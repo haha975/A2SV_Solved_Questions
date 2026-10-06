@@ -1,21 +1,19 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        hash={0:1}
-        prif=0
-        count=0
-        for i in range(len(nums)):
-            prif+=nums[i]
-            
-            if (prif-k) in hash:
-                count+=hash[prif-k]
-            if prif in hash:
-                hash[prif]+=1
+        seen={0:1}
+        total=0
+        ans=0
+
+        for j in range(len(nums)):
+            total+=nums[j]
+            a=total-k
+            if a in seen:
+                ans+=seen[a]
+            if total not in seen :
+                seen[total]=1
             else:
-                hash[prif]=1
-        return count
+                seen[total]+=1
 
+        return ans
 
-
-
-
-        
+          
